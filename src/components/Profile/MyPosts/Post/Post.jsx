@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Post.module.css';
 
+
 const Post = (props) => {
     return  (
         <div className={styles.posts}>
@@ -8,7 +9,7 @@ const Post = (props) => {
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBoT8aT2n5ep_sg3C05vQxAg7Qy_XruE03NA&usqp=CAU' />
                 { props.message }
                 <div>
-                    <span>{ props.likesCount}</span>
+                    <span className={styles.likes}>{ props.likesCount } likes</span>
                 </div>
             </div>
         </div>
