@@ -1,0 +1,14 @@
+.friends {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+}
+
+h3 {
+    margin: 0;
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+

@@ -1,0 +1,14 @@
+/*.friend {*/
+/*    grid-area: friend;*/
+/*}*/
+
+.navbarAva img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.friend p{
+    margin: 0;
+    text-align: center;
+}

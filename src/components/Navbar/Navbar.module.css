@@ -1,14 +1,29 @@
 .nav {
+    /*display: grid;*/
+    /*grid-template-areas:*/
+    /*"links links links"*/
+    /*"frs frs frs";*/
+    /*grid-template-rows: 7fr 3fr;*/
+
+
     grid-area: n;
     background-color: #FF9640;
     padding: 20px;
 }
 
-.item a{
+/*.links {*/
+/*    grid-area: links;*/
+/*}*/
+
+/*.friends {*/
+/*    grid-area: frs;*/
+/*}*/
+
+.item a {
     color: white;
     text-decoration: none;
 }
 
-.item a.active{
+.item a.active {
     color: gold;
 }
