@@ -6,7 +6,7 @@ import ProfileHeader from "./ProfileHeader/ProfileHeader";
 const Profile = (props) => {
     return  <div className={styles.content}>
         <ProfileHeader />
-        <MyPosts posts={props.post} />
+        <MyPosts posts={props.post} addPost = {props.addPost} />
     </div>
 }
 
