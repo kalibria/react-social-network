@@ -1,7 +1,19 @@
  import React from 'react';
 import './index.css';
- import state from "./redux/state";
- import {rerenderReactDom} from './rerender'
+ import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
+ import ReactDOM from "react-dom";
+ import App from "./App";
+
+ let rerenderReactDom = (state) => {
+  ReactDOM.render(
+      <React.StrictMode>
+       <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
+      </React.StrictMode>,
+      document.getElementById('root')
+  )
+ }
+
+subscribe(rerenderReactDom)
 
  rerenderReactDom(state);
 

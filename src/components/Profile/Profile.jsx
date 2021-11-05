@@ -2,11 +2,15 @@ import React from "react";
 import styles from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
+import {updateNewPostText} from "../../redux/state";
 
 const Profile = (props) => {
     return  <div className={styles.content}>
         <ProfileHeader />
-        <MyPosts posts={props.post} addPost = {props.addPost} />
+        <MyPosts posts={props.post.posts}
+                 newPostText = {props.post.newPostText}
+                 addPost = {props.addPost}
+                 updateNewPostText={props.updateNewPostText} />
     </div>
 }
 

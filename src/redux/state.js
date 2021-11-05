@@ -1,12 +1,10 @@
-import {rerenderReactDom} from "../rerender";
-
-
 let state = {
     profilePage: {
         posts: [
             {id: "1", post: "It's my first post", likesCount: "15"},
             {id: "2", post: "Hello world!!!", likesCount: "25"},
-        ]
+        ],
+        newPostText: "it-kamasutra.com",
     },
     dialogsPage: {
         dialogs: [
@@ -42,14 +40,28 @@ let state = {
         ]
     }
 }
+window.state = state;
 
-export let addPost = (newPostMessage) => {
-    let newPost = {id: "3", post: newPostMessage, likesCount: "0"};
+let  rerenderReactDom = () => {}
+
+export const addPost = () => {
+    let newPost = {id: "3",
+        post: state.profilePage.newPostText,
+        likesCount: "0"};
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText="";
     rerenderReactDom(state);
-
 }
 
-// "Imagination rules the world"
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderReactDom(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderReactDom = observer;
+}
+
+
 export default state
 
