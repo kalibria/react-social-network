@@ -10,6 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 const App = (props) => {
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -20,8 +21,8 @@ const App = (props) => {
                     <Route path='/profile' render={() =>
                         <Profile
                             post={props.store.getState().profilePage}
-                            addPost={props.store.addPost.bind(props.store)}
-                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                            addPost={()=> props.store.dispatch({type: "ADD-POST"})}
+                            updateNewPostText={(value)=> props.store.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: value})}
                         />}
                     />
                     <Route path='/news' component={News}/>

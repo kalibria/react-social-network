@@ -41,31 +41,51 @@ let store = {
             ]
         }
     },
-    addPost() {
-        let newPost = {
-            id: "3",
-            post: this._state.profilePage.newPostText,
-            likesCount: "0"
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this.rerenderReactDom(this);
-    },
-    updateNewPostText(newText) {
-        console.log('this', this)
-        this._state.profilePage.newPostText = newText;
-        this.rerenderReactDom(this);
-    },
-    subscribe(observer) {
-        console.log('this in subscribe', this)
-        this.rerenderReactDom = observer;
-    },
+    _rerenderReactDom(){},
+
     getState() {
         console.log('getState called!!',
             this._state
         )
         return this._state;
     },
+    subscribe(observer) {
+        console.log('this in subscribe', this)
+        this._rerenderReactDom = observer;
+    },
+
+    // addPost() {
+    //     let newPost = {
+    //         id: "3",
+    //         post: this._state.profilePage.newPostText,
+    //         likesCount: "0"
+    //     };
+    //     this._state.profilePage.posts.push(newPost);
+    //     this._state.profilePage.newPostText = "";
+    //     this.rerenderReactDom(this);
+    // },
+    // updateNewPostText(newText) {
+    //     this._state.profilePage.newPostText = newText;
+    //     this.rerenderReactDom(this);
+    // },
+
+    dispatch(action){ //{ type: ""}
+        if(action.type === "ADD-POST"){
+            let newPost = {
+                id: "3",
+                post: this._state.profilePage.newPostText,
+                likesCount: "0"
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._rerenderReactDom(this);
+        }else if(action.type === "UPDATE-NEW-POST-TEXT"){
+            this._state.profilePage.newPostText = action.newText;
+            this._rerenderReactDom(this);
+        }
+    }
+
+
 
 }
 
