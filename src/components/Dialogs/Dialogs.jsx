@@ -32,7 +32,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <MessageArea />
+                <MessageArea state={props.state} dispatch={props.dispatch}/>
             </div>
         </div>
 

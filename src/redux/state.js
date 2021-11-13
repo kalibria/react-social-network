@@ -1,3 +1,8 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
+
 let store = {
     _state: {
         profilePage: {
@@ -18,8 +23,13 @@ let store = {
             ],
             messages: [
                 {id: "1", message: "Hello"},
-                {id: "2", message: "How are you?"}
-            ]
+                {id: "2", message: "How are you?"},
+                {id: "3", message: "So what are you doing during the holidays?"},
+                {id: "4", message: "I’m going to Thailand for 2 weeks"},
+                {id: "5", message: "How about the food?"},
+                {id: "6", message: "So what about you?"}
+            ],
+            newMessage: "",
         },
         navbar: {
             friends: [
@@ -41,7 +51,8 @@ let store = {
             ]
         }
     },
-    _rerenderReactDom(){},
+    _rerenderReactDom() {
+    },
 
     getState() {
         console.log('getState called!!',
@@ -54,23 +65,8 @@ let store = {
         this._rerenderReactDom = observer;
     },
 
-    // addPost() {
-    //     let newPost = {
-    //         id: "3",
-    //         post: this._state.profilePage.newPostText,
-    //         likesCount: "0"
-    //     };
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = "";
-    //     this.rerenderReactDom(this);
-    // },
-    // updateNewPostText(newText) {
-    //     this._state.profilePage.newPostText = newText;
-    //     this.rerenderReactDom(this);
-    // },
-
-    dispatch(action){ //{ type: ""}
-        if(action.type === "ADD-POST"){
+    dispatch(action) { //{ type: ""}
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: "3",
                 post: this._state.profilePage.newPostText,
@@ -79,15 +75,46 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = "";
             this._rerenderReactDom(this);
-        }else if(action.type === "UPDATE-NEW-POST-TEXT"){
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._rerenderReactDom(this);
+        } else if (action.type === UPDATE_NEW_MESSAGE){
+            this._state.dialogsPage.newMessage = action.newMessage;
+            this._rerenderReactDom(this)
+        } else if (action.type === ADD_MESSAGE){
+          let newMessageEl =  {id: "7", message: this._state.dialogsPage.newMessage}
+          this._state.dialogsPage.messages.push(newMessageEl);
+          this._state.dialogsPage.newMessage = "";
+          this._rerenderReactDom(this);
         }
     }
 
-
-
 }
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+};
+export const updateNewPostTextActionCreator = (value) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: value
+    }
+};
+
+export const updateNewMessageActionCreator = (value) => {
+    return {
+        type: UPDATE_NEW_MESSAGE,
+        newMessage: value,
+    }
+};
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE,
+    }
+}
+
 
 export default store;
 
