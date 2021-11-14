@@ -1,6 +1,6 @@
 import React from "react";
 import s from './MessageArea.module.css'
-import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/state";
+import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogsReducer";
 
 
 const MessageArea = (props) => {
@@ -20,7 +20,7 @@ const MessageArea = (props) => {
             <div className={s.massageArea}>
                 <textarea ref={newMessageElement} placeholder="Enter your message" onChange={ updateNewMessage } />
                 <div>
-                <button onClick={ addMessage }>Add message</button>
+                <button onClick={ addMessage }>Sent</button>
                 </div>
             </div>
 

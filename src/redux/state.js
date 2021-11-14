@@ -1,7 +1,7 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import navbarReducer from "./navbarReducer";
+
 
 let store = {
     _state: {
@@ -27,7 +27,7 @@ let store = {
                 {id: "3", message: "So what are you doing during the holidays?"},
                 {id: "4", message: "I’m going to Thailand for 2 weeks"},
                 {id: "5", message: "How about the food?"},
-                {id: "6", message: "So what about you?"}
+
             ],
             newMessage: "",
         },
@@ -65,55 +65,14 @@ let store = {
         this._rerenderReactDom = observer;
     },
 
-    dispatch(action) { //{ type: ""}
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: "3",
-                post: this._state.profilePage.newPostText,
-                likesCount: "0"
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._rerenderReactDom(this);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._rerenderReactDom(this);
-        } else if (action.type === UPDATE_NEW_MESSAGE){
-            this._state.dialogsPage.newMessage = action.newMessage;
-            this._rerenderReactDom(this)
-        } else if (action.type === ADD_MESSAGE){
-          let newMessageEl =  {id: "7", message: this._state.dialogsPage.newMessage}
-          this._state.dialogsPage.messages.push(newMessageEl);
-          this._state.dialogsPage.newMessage = "";
-          this._rerenderReactDom(this);
-        }
-    }
-
-}
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-};
-export const updateNewPostTextActionCreator = (value) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: value
-    }
-};
-
-export const updateNewMessageActionCreator = (value) => {
-    return {
-        type: UPDATE_NEW_MESSAGE,
-        newMessage: value,
-    }
-};
-export const addMessageActionCreator = () => {
-    return {
-        type: ADD_MESSAGE,
+    dispatch(action) {
+        profileReducer(this._state.profilePage, action);
+        dialogsReducer(this._state.dialogsPage, action);
+        navbarReducer(this._state.navbar, action);
+        this._rerenderReactDom(this);
     }
 }
+
 
 
 export default store;
