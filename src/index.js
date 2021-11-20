@@ -1,22 +1,23 @@
 import React from 'react';
 import './index.css';
-import store from "./redux/state";
-// import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
+import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-let rerenderReactDom = (appStore) => {
+let rerenderReactDom = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                store={appStore}
+                state={state}
+                store={store}
+                dispatch={store.dispatch.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')
     )
 }
-rerenderReactDom(store);
-store.subscribe(rerenderReactDom);
+rerenderReactDom(store.getState());
+store.subscribe(() => {rerenderReactDom(store.getState())});
 
 // subscribe(rerenderReactDom)
 

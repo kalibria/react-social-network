@@ -1,15 +1,16 @@
 import React from "react";
 import styles from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
+import MyPostsContainer from "./MyPosts/Post/MyPostsContainer";
 
 const Profile = (props) => {
-    return  <div className={styles.content}>
-        <ProfileHeader />
-        <MyPosts posts={props.post.posts}
-                 newPostText = {props.post.newPostText}
-                 addPost = {props.addPost}
-                 updateNewPostText={props.updateNewPostText} />
+    return <div className={styles.content}>
+        <ProfileHeader/>
+        <MyPostsContainer
+            posts={props.posts}
+            newPostText = {props.newPostText}
+            dispatch={props.dispatch}
+        />
     </div>
 }
 

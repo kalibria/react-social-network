@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import Friends from "./navbarFrieds/Friends";
 
 const Navbar = (props) => {
+
     return (
         <nav className={classes.nav}>
             <div className={classes.links}>

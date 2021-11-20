@@ -3,7 +3,6 @@ import classes from './Friends.module.css';
 import Friend from "./Friend/Friend";
 
 const Friends = (props) => {
-
     return (
         <div >
             <h3 className={classes.heading}>FRIENDS</h3>

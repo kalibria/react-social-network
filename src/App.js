@@ -8,29 +8,28 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "./redux/profileReducer";
+// import {addPostActionCreator, updateNewPostTextActionCreator} from "./redux/profileReducer";
 
 
 
 const App = (props) => {
-
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar friends={props.store.getState().navbar.friends}/>
+                <Navbar friends={props.state.navbar.friends}/>
                 <div className='app-wrapper-content'>
                     <Route path='/messages' render={() =>
                         <Dialogs
-                            state={props.store.getState().dialogsPage}
-                            dispatch={props.store.dispatch.bind(props.store)}
+                            state={props.state.dialogsPage}
+                            dispatch={props.dispatch}
                         />
                     }/>
                     <Route path='/profile' render={() =>
                         <Profile
-                            post={props.store.getState().profilePage}
-                            addPost={()=> props.store.dispatch(addPostActionCreator())}
-                            updateNewPostText={(value)=> props.store.dispatch(updateNewPostTextActionCreator(value))}
+                            posts={props.state.profilePage.posts}
+                            newPostText={props.state.profilePage.newPostText}
+                            dispatch={props.dispatch}
                         />}
                     />
                     <Route path='/news' component={News}/>
