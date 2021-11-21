@@ -10,7 +10,7 @@ const MyPostsContainer = (props) => {
     let onPostChange = (text) => {
         props.dispatch(updateNewPostTextActionCreator(text))
     }
-    
+
     return <MyPosts
         updateNewPostText={onPostChange}
         addPost={textPost}

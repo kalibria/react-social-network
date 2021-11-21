@@ -7,13 +7,10 @@ const MessageArea = (props) => {
     let newMessageElement = React.createRef();
 
     let addMessage = () => {
-        if (newMessageElement.current.value !== '') {
-            props.dispatch(addMessageActionCreator())
-            newMessageElement.current.value = '';
-        }
+       props.addMessage(newMessageElement)
     };
     let updateNewMessage = () => {
-        props.dispatch(updateNewMessageActionCreator(newMessageElement.current.value))
+        props.updateNewMessage(newMessageElement)
     };
 
     return (

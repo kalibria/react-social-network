@@ -2,6 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import MessageArea from "./MessageArea";
+import MessageAreaContainer from "./MessageAreaContainer";
 
 const DialogItem = (props) => {
     let link = '/messages/' + props.id;
@@ -32,7 +33,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <MessageArea state={props.state} dispatch={props.dispatch}/>
+                <MessageAreaContainer state={props.state} dispatch={props.dispatch}/>
             </div>
         </div>
 
