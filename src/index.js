@@ -3,24 +3,24 @@ import './index.css';
 import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
+import StoreContext from "./redux/context";
 
 let rerenderReactDom = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App
-                state={state}
-                store={store}
-                dispatch={store.dispatch.bind(store)}
-            />
+            <StoreContext.Provider value={store}>
+                <App />
+            </StoreContext.Provider>
         </React.StrictMode>,
         document.getElementById('root')
     )
 }
 rerenderReactDom(store.getState());
-store.subscribe(() => {rerenderReactDom(store.getState())});
+store.subscribe(() => {
+    rerenderReactDom(store.getState())
+});
 
 // subscribe(rerenderReactDom)
-
 
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,7 +1,5 @@
 import React from "react";
 import s from './MessageArea.module.css'
-import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogsReducer";
-
 
 const MessageArea = (props) => {
     let newMessageElement = React.createRef();
@@ -20,7 +18,6 @@ const MessageArea = (props) => {
                 <button onClick={ addMessage }>Sent</button>
                 </div>
             </div>
-
     )
 }
 

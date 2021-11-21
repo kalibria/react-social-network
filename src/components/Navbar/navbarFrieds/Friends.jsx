@@ -1,16 +1,14 @@
 import React from "react";
 import classes from './Friends.module.css';
-import Friend from "./Friend/Friend";
+import FriendContainer from "./Friend/FriendContainer";
 
-const Friends = (props) => {
+const Friends = () => {
     return (
-        <div >
+        <div>
             <h3 className={classes.heading}>FRIENDS</h3>
             <div className={classes.friends}>
-                {props.friends.map( friend => <Friend key={friend.id} name={friend.name} ava={friend.ava} className={classes.friend} />)}
+                <FriendContainer/>
             </div>
-
-
         </div>
     )
 }

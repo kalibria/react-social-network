@@ -1,14 +1,13 @@
 import React from "react";
 import classes from './Friend.module.css';
 
-const Friend = (props) => {
-    const avaElements = <div key={props.id} className={classes.navbarAva}><img src={props.ava} /></div>;
-    const nameElements = <p key={props.id} className={classes.navbarName}>{props.name}</p>;
-
+const Friend = ({ id, name, ava }) => {
     return (
         <div>
-            {avaElements}
-            {nameElements}
+            <div key={id} className={classes.navbarAva}>
+                <img src={ava} />
+            </div>
+            <p key={id} className={classes.navbarName}>{name}</p>
         </div>
     )
 }
