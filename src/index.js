@@ -3,14 +3,14 @@ import './index.css';
 import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
-import StoreContext from "./redux/context";
+import {Provider} from "react-redux";
 
 let rerenderReactDom = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App />
-            </StoreContext.Provider>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     )

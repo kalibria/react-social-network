@@ -25,7 +25,6 @@ const Navbar = (props) => {
                 </div>
             </div>
             <Friends className={classes.friends}/>
-            {/*friends={props.friends}*/}
         </nav>
 
 

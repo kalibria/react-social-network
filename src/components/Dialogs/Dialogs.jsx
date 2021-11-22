@@ -4,7 +4,8 @@ import {NavLink} from "react-router-dom";
 import MessageArea from "./MessageArea";
 import MessageAreaContainer from "./MessageAreaContainer";
 import dialogsReducer from "../../redux/dialogsReducer";
-import StoreContext from "../../redux/context";
+import {connect} from "react-redux";
+
 
 const DialogItem = (props) => {
     let link = '/messages/' + props.id;
@@ -22,40 +23,70 @@ const MessageItem = (props) => {
     return <div className={s.messageItem}>{props.message}</div>
 }
 
-const Dialogs = (props) => {
+// const Dialogs = (props) => {
+//
+//     return (
+//         <StoreContext.Consumer>
+//             {
+//                 (store) => {
+//                     const dialogElements = store.getState().dialogsPage.dialogs.map(
+//                         d => <DialogItem name={d.name} id={d.id}/>
+//                     )
+//
+//                     const messageElements = store.getState().dialogsPage.messages.map(
+//                         (m => <MessageItem message={m.message}/>)
+//                     )
+//
+//                     return (
+//                         <div className={s.dialogs}>
+//                             <div className={s.dialogsItems}>
+//                                 {dialogElements}
+//                             </div>
+//                             <div className={s.messages}>
+//                                 {messageElements}
+//                                 <MessageAreaContainer
+//                                     // state={props.state}
+//                                     // dispatch={props.dispatch}
+//                                 />
+//                             </div>
+//                         </div>)
+//                 }
+//             }
+//         </StoreContext.Consumer>
+//
+//     )
+// }
 
+let Dialogs = (props) => {
+    let dialogElements = props.dialogElements.map(
+        d => <DialogItem name={d.name} id={d.id}/>
+    )
+
+    let messageElements = props.messageElements.map(
+        (m => <MessageItem message={m.message}/>)
+    )
 
     return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    const dialogElements = store.getState().dialogsPage.dialogs.map(
-                        d => <DialogItem name={d.name} id={d.id}/>
-                    )
+        <div className={s.dialogs}>
+            <div className={s.dialogsItems}>
+                {dialogElements}
+            </div>
+            <div className={s.messages}>
+                {messageElements}
+                <MessageAreaContainer />
+            </div>
+        </div>)
 
-                    const messageElements = store.getState().dialogsPage.messages.map(
-                        (m => <MessageItem message={m.message}/>)
-                    )
-
-                    return (
-                        <div className={s.dialogs}>
-                            <div className={s.dialogsItems}>
-                                {dialogElements}
-                            </div>
-                            <div className={s.messages}>
-                                {messageElements}
-                                <MessageAreaContainer
-                                    state={props.state}
-                                    dispatch={props.dispatch}
-                                />
-                            </div>
-                        </div>)
-                }
-            }
-        </StoreContext.Consumer>
-
-
-    )
 }
+
+const mstp = (state) => {
+    return {
+        dialogElements: state.dialogsPage.dialogs,
+        messageElements: state.dialogsPage.messages,
+    }
+}
+
+Dialogs = connect(mstp)(Dialogs)
+
 
 export default Dialogs;
