@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import {Provider} from "react-redux";
 
-let rerenderReactDom = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
@@ -14,13 +13,11 @@ let rerenderReactDom = (state) => {
         </React.StrictMode>,
         document.getElementById('root')
     )
-}
-rerenderReactDom(store.getState());
-store.subscribe(() => {
-    rerenderReactDom(store.getState())
-});
 
-// subscribe(rerenderReactDom)
+
+
+
+
 
 
 // If you want to start measuring performance in your app, pass a function
