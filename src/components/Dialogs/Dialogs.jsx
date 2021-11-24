@@ -59,11 +59,11 @@ const MessageItem = (props) => {
 
 let Dialogs = (props) => {
     let dialogElements = props.dialogElements.map(
-        d => <DialogItem name={d.name} id={d.id}/>
+        d => <DialogItem key={d.id} name={d.name} id={d.id}/>
     )
 
     let messageElements = props.messageElements.map(
-        (m => <MessageItem message={m.message}/>)
+        (m => <MessageItem key={m.id} message={m.message}/>)
     )
 
     return (
