@@ -6,6 +6,7 @@ let initialState = {
     users: [
         {
             id: 1,
+            photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
             followed: true,
             fullName: 'Dmitry',
             status: 'Smile and the world smiles with you.',
@@ -13,6 +14,7 @@ let initialState = {
         },
         {
             id: 2,
+            photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
             followed: true,
             fullName: 'Katerina',
             status: 'Happiness is homemade.....',
@@ -20,6 +22,7 @@ let initialState = {
         },
         {
             id: 3,
+            photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
             fullName: 'Alex',
             followed: false,
             status: 'My life ,my rule,that’s my attitude…',
@@ -27,6 +30,7 @@ let initialState = {
         },
         {
             id: 4,
+            photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
             followed: false,
             fullName: 'Vary',
             status: 'DON\'T FoRGet To Smile.',
