@@ -36,7 +36,10 @@ let initialState = {
     //         status: 'DON\'T FoRGet To Smile.',
     //         location: {city: 'Kiev', country: 'Ukraine'}
     //     },
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 20,
+    currentPage: 2
 }
 
 const usersReducer = (state = initialState, action) => {
