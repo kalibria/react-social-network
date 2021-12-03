@@ -11,6 +11,7 @@ let reducers = combineReducers({
     usersPage: usersReducer
 });
 
-const store = createStore(reducers)
+const store = createStore(reducers);
+window.store = store;
 
 export default store;
