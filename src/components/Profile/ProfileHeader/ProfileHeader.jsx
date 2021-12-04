@@ -16,7 +16,9 @@ const ProfileHeader = (props) => {
             </div>
             <div className={styles.descriptionBlock}>
                 <img src={props.profile.photos.large} />
+
             </div>
+            <p>{props.profile.fullName}</p>
             <p>{props.profile.aboutMe}</p>
             <div className={styles.contacts}>
                 <p>{props.profile.contacts.facebook}</p>
