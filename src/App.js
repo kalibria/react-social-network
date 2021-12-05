@@ -9,6 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderComponent from "./components/Header/HeaderComponent";
 
 
 
@@ -17,7 +18,7 @@ const App = (props) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderComponent/>
                 <Navbar />
                 <div className='app-wrapper-content'>
                     <Route path='/messages' render={() =>
