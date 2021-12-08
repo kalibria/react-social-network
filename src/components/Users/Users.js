@@ -15,16 +15,15 @@ let Users = (props) => {
 
     return <div>
         <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p && styles.selectedPage} onClick={() => {
-                    props.onPageChange(p);
-                }}>{p}</span>
+            {pages.map(page => {
+                return <span className={props.currentPage === page && styles.selectedPage} onClick={() => {
+                    props.onPageChange(page);
+                }}>{page}</span>
             })}
         </div>
         {
             props.users.map(u => <div key={u.id}>
                         <span>
-
                                 <div>
                                     <NavLink to={'/profile/' + u.id}>
                                         <img src={u.photos.small !== null ? u.photos.small : userPhoto}
@@ -34,19 +33,23 @@ let Users = (props) => {
 
                                 <div>
                                     {u.followed
-                                        ? <button onClick={() => {
+                                        ? <button disabled={props.followingInProgress.some(id => id ===u.id )} onClick={() => {
+                                            props.toggleFollowingProgress(true, u.id);
                                             deleteFollow(u.id).then(data => {
                                                     if(data.resultCode == 0){
                                                         props.unfollow(u.id)
                                                     }
+                                                props.toggleFollowingProgress(false, u.id);
                                                 })
 
                                         }}>Unfollow</button>
-                                        : <button onClick={() => {
+                                        : <button disabled={props.followingInProgress.some(id => id ===u.id )} onClick={() => {
+                                            props.toggleFollowingProgress(true, u.id);
                                                 postFollow(u.id).then(data =>{
                                                     if(data.resultCode == 0){
                                                         props.follow(u.id)
                                                     }
+                                                    props.toggleFollowingProgress(false, u.id);
                                                 })
 
                                         }}>Follow</button>}

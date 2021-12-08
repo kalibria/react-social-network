@@ -3,47 +3,16 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_CURRENT = 'SET_TOTAL_CURRENT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
-    users: [
-        //     {
-        //         id: 1,
-        //         photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
-        //         followed: true,
-        //         fullName: 'Dmitry',
-        //         status: 'Smile and the world smiles with you.',
-        //         location: {city: 'Minsk', country: 'Belarus'}
-        //     },
-        //     {
-        //         id: 2,
-        //         photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
-        //         followed: true,
-        //         fullName: 'Katerina',
-        //         status: 'Happiness is homemade.....',
-        //         location: {city: 'Paris', country: 'France'}
-        //     },
-        //     {
-        //         id: 3,
-        //         photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
-        //         fullName: 'Alex',
-        //         followed: false,
-        //         status: 'My life ,my rule,that’s my attitude…',
-        //         location: {city: 'Warsaw', country: 'Poland'}
-        //     },
-        //     {
-        //         id: 4,
-        //         photoSrc:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd-HyJjjQayV6gWuZ4ogpxvpRhu_Mlxipu4Q&usqp=CAU',
-        //         followed: false,
-        //         fullName: 'Vary',
-        //         status: 'DON\'T FoRGet To Smile.',
-        //         location: {city: 'Kiev', country: 'Ukraine'}
-        //     },
-    ],
+    users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -88,6 +57,13 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state
     }
@@ -98,7 +74,8 @@ export const unfollow = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalCurrent) => ({type: SET_TOTAL_CURRENT, totalCurrent});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
 
 export default usersReducer;
