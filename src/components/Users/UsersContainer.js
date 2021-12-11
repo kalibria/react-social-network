@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    followSuccess, getUsers,
+    getUsers,
     setCurrentPage,
     toggleFollowingProgress,
     unfollow,
