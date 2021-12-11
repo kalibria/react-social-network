@@ -20,6 +20,7 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
+            console.log("hey")
             return {
                 ...state,
                 users: state.users.map(u => {
@@ -71,8 +72,8 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const follow = (userId) => ({type: FOLLOW, userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const followSuccess = (userId) => ({type: FOLLOW, userId});
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalCurrent) => ({type: SET_TOTAL_CURRENT, totalCurrent});
@@ -92,9 +93,35 @@ export const getUsers = (currentPage, pageSize) => {
             dispatch (setTotalUsersCount(data.totalCount));
         })
     }
+}
 
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId));
+        usersAPI.postFollow(userId).then(data => {
+            console.log('data', data
+            )
+            if (data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+        })
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch (toggleFollowingProgress(true, userId));
+        usersAPI.deleteFollow(userId).then(data =>{
+            if(data.resultCode === 0){
+                dispatch (unfollowSuccess(userId))
+            }
+            dispatch (toggleFollowingProgress(false, userId));
+        })
+
+    }
 }
 
 
 
-export default usersReducer;
+    export default usersReducer;
