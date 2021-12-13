@@ -4,6 +4,7 @@ import {NavLink, Redirect} from "react-router-dom";
 import MessageAreaContainer from "./MessageAreaContainer";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 
 const DialogItem = (props) => {
@@ -80,7 +81,7 @@ let Dialogs = (props) => {
 
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
+// let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 const mstp = (state) => {
     return {
@@ -89,7 +90,9 @@ const mstp = (state) => {
     }
 }
 
-Dialogs = connect(mstp)(AuthRedirectComponent)
+// Dialogs = connect(mstp)(AuthRedirectComponent)
 
 
-export default Dialogs;
+export default compose(
+    connect(mstp),
+    withAuthRedirect)(Dialogs);
