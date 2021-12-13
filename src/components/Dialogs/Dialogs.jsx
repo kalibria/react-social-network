@@ -1,10 +1,9 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import MessageArea from "./MessageArea";
+import {NavLink, Redirect} from "react-router-dom";
 import MessageAreaContainer from "./MessageAreaContainer";
-import dialogsReducer from "../../redux/dialogsReducer";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 
 
 const DialogItem = (props) => {
@@ -66,6 +65,8 @@ let Dialogs = (props) => {
         (m => <MessageItem key={m.id} message={m.message}/>)
     )
 
+    if(!props.isAuth) return <Redirect to={'/login'} />
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -79,14 +80,16 @@ let Dialogs = (props) => {
 
 }
 
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
 const mstp = (state) => {
     return {
         dialogElements: state.dialogsPage.dialogs,
-        messageElements: state.dialogsPage.messages,
+        messageElements: state.dialogsPage.messages
     }
 }
 
-Dialogs = connect(mstp)(Dialogs)
+Dialogs = connect(mstp)(AuthRedirectComponent)
 
 
 export default Dialogs;

@@ -9,6 +9,7 @@ import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
+import LoginPage from "./components/login";
 
 
 
@@ -23,6 +24,9 @@ const App = (props) => {
                     <Route path='/messages' render={() =>
                         <Dialogs />
                     }/>
+                    <Route path='/profile' render={() =>
+                        <ProfileContainer />}
+                    />
                     <Route path='/profile/:userId' render={() =>
                         <ProfileContainer />}
                     />
@@ -30,6 +34,7 @@ const App = (props) => {
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
+                    <Route path='/login' render={() => <LoginPage />} />
                 </div>
             </div>
         </BrowserRouter>
