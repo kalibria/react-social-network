@@ -8,13 +8,7 @@ let instance = axios.create({
         'API-KEY': process.env.REACT_APP_API_KEY
     }
 });
-//
-// export const getUsers = (currentPage, pageSize ) => {
-//     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-//         .then(response => {
-//             return response.data
-//         })
-// }
+
 
 export const usersAPI = {
     getUsers (currentPage, pageSize ) {
@@ -37,10 +31,27 @@ export const usersAPI = {
             })
     },
     getUserProfile(userID){
+        console.warn('Deprecated method. Please profileAPI object')
         return instance.get(`profile/${userID}`)
             .then(response => {
                 return response.data
             })
+    }
+
+}
+
+export const profileAPI = {
+    getUserProfile(userID){
+        return instance.get(`profile/${userID}`)
+            .then(response => {
+                return response.data
+            })
+    },
+    getStatus(userId) {
+        return instance.get(`/profile/status/${userId}`)
+    },
+    updateStatus(status) {
+        return instance.put(`/profile/status/`, {status: status})
     }
 
 }
@@ -54,25 +65,3 @@ export const AuthAPI = {
     }
 
 }
-
-// export const getAuthMe = () => {
-//     return instance.get('auth/me')
-//         .then(response => {
-//             return response.data
-//         })
-// }
-
-// export const deleteFollow = (userId) => {
-//     return instance.delete(`follow/${userId}`)
-//         .then(response => {
-//             return response.data
-//         })
-// }
-
-// export const postFollow = (userId) => {
-//     return instance.post(`follow/${userId}`, {})
-//         .then(response => {
-//             console.log('response',response)
-//             return response.data
-//         })
-// }

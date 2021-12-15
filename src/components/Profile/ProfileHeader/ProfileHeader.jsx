@@ -29,7 +29,7 @@ const ProfileHeader = (props) => {
                     <p>{props.profile.contacts.github}</p>
                 </div>
             </div>
-            <ProfileStatus status={'Hello Hello'}/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 }
