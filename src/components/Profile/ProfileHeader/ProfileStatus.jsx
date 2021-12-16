@@ -1,31 +1,44 @@
 import React from "react";
 
 class ProfileStatus extends React.Component {
-
     state = {
         editMode: false,
         status: this.props.status
     }
 
     activateEditeMode = () => {
-        this.setState ({
+     console.log("status",this.props.status)
+        this.setState({
             editMode: true
         })
-
     }
 
     deactivateEditeMode = () => {
-        this.setState ({
+        this.setState({
             editMode: false
         });
         this.props.updateStatus(this.state.status)
     }
 
     onStatusChange = (e) => {
+        console.log("onChange", e.currentTarget.value);
+        console.log("onChange2", this.props.status)
         this.setState({
             status: e.currentTarget.value
         })
-}
+        console.log("onChange3", this.state.status)
+    }
+
+    componentDidUpdate = (prevProps, prevStatus) => {
+        console.log("prevProps", prevProps.status, "prevStatus", this.props.status)
+        if (prevProps.status !== this.props.status) {
+            console.log('33')
+            this.setState({
+                status: this.props.status
+            })
+        }
+
+    }
 
 
     render() {
@@ -38,7 +51,8 @@ class ProfileStatus extends React.Component {
                 }
                 {this.state.editMode &&
                     <div>
-                        <input value={this.state.status} onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditeMode} />
+                        <input value={this.state.status} onChange={this.onStatusChange} autoFocus={true}
+                               onBlur={this.deactivateEditeMode}/>
                     </div>
                 }
             </div>

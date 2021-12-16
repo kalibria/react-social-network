@@ -11,13 +11,12 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        console.log(1);
         let userID = this.props.match.params.userId;
         if(!userID) {
             userID = 2;
         }
         this.props.getUserProfile(userID)
-       this.props.getStatus(userID)
+        this.props.getStatus(userID)
     }
 
 
