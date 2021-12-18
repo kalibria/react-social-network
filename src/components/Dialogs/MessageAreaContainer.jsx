@@ -3,30 +3,7 @@ import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redu
 import MessageArea from "./MessageArea";
 import {connect} from "react-redux";
 
-//
-// const MessageAreaContainer = () => {
-//         return (
-//         <StoreContext.Consumer>
-//             {
-//                 (store) => {
-//                     let addMessage = (newMessageElement) => {
-//                         if (newMessageElement.current.value !== '') {
-//                             store.dispatch(addMessageActionCreator())
-//                             newMessageElement.current.value = '';
-//                         }
-//                     };
-//                     let updateNewMessage = (newMessageElement) => {
-//                         store.dispatch(updateNewMessageActionCreator(newMessageElement.current.value))
-//                     };
-//                     return <MessageArea
-//                         addMessage={addMessage}
-//                         updateNewMessage={updateNewMessage}
-//                     />
-//                 }
-//             }
-//         </StoreContext.Consumer>
-//     )
-// }
+
 
 const MapStateToProps = (state) => {
     return {

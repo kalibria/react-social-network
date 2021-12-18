@@ -6,6 +6,9 @@ import {connect} from "react-redux";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
 
+import {reduxForm} from "redux-form";
+import { Field } from 'redux-form';
+
 
 const DialogItem = (props) => {
     let link = '/messages/' + props.id;
@@ -23,39 +26,6 @@ const MessageItem = (props) => {
     return <div className={s.messageItem}>{props.message}</div>
 }
 
-// const Dialogs = (props) => {
-//
-//     return (
-//         <StoreContext.Consumer>
-//             {
-//                 (store) => {
-//                     const dialogElements = store.getState().dialogsPage.dialogs.map(
-//                         d => <DialogItem name={d.name} id={d.id}/>
-//                     )
-//
-//                     const messageElements = store.getState().dialogsPage.messages.map(
-//                         (m => <MessageItem message={m.message}/>)
-//                     )
-//
-//                     return (
-//                         <div className={s.dialogs}>
-//                             <div className={s.dialogsItems}>
-//                                 {dialogElements}
-//                             </div>
-//                             <div className={s.messages}>
-//                                 {messageElements}
-//                                 <MessageAreaContainer
-//                                     // state={props.state}
-//                                     // dispatch={props.dispatch}
-//                                 />
-//                             </div>
-//                         </div>)
-//                 }
-//             }
-//         </StoreContext.Consumer>
-//
-//     )
-// }
 
 let Dialogs = (props) => {
     let dialogElements = props.dialogElements.map(
@@ -68,6 +38,10 @@ let Dialogs = (props) => {
 
     if(!props.isAuth) return <Redirect to={'/login'} />
 
+    const onSubmit = (formData) => {
+        console.log(formData)
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -75,13 +49,11 @@ let Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <MessageAreaContainer />
+                <MessageAreaReduxForm  onSubmit={onSubmit}/>
             </div>
         </div>)
-
 }
 
-// let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 const mstp = (state) => {
     return {
@@ -90,9 +62,27 @@ const mstp = (state) => {
     }
 }
 
-// Dialogs = connect(mstp)(AuthRedirectComponent)
-
-
 export default compose(
     connect(mstp),
     withAuthRedirect)(Dialogs);
+
+
+
+const MessageAreaForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} >
+            <div>
+                <label htmlFor={"message"}>Enter yore message:</label>
+            </div>
+            <div>
+                <Field component={"input"} type={"text"} name={"message"} placeholder={"message"}/>
+            </div>
+            <div>
+                <button>Send</button>
+            </div>
+
+        </form>
+    )
+}
+
+export const MessageAreaReduxForm = reduxForm({form: 'messageForm'})(MessageAreaForm)

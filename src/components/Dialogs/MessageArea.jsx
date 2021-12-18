@@ -1,6 +1,7 @@
 import React from "react";
 import s from './MessageArea.module.css'
 
+
 const MessageArea = (props) => {
     let newMessageElement = React.createRef();
 
@@ -22,3 +23,4 @@ const MessageArea = (props) => {
 }
 
 export default MessageArea;
+
