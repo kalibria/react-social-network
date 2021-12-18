@@ -4,15 +4,22 @@ import dialogsReducer from "./dialogsReducer";
 import navbarReducer from "./navbarReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
-import thunkMiddleware from "redux-thunk"
+import thunkMiddleware from "redux-thunk";
+import { reducer as formReducer } from 'redux-form';
+import {LoginForm} from "../components/login";
+
+
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     navbar: navbarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 });
+
+
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 window.store = store;
