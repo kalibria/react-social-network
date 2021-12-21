@@ -1,13 +1,12 @@
 import React from "react";
 import s from './Dialogs.module.css'
 import {NavLink, Redirect} from "react-router-dom";
-import MessageAreaContainer from "./MessageAreaContainer";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
-
 import {reduxForm} from "redux-form";
-import { Field } from 'redux-form';
+import {Field} from 'redux-form';
+import {addMessageActionCreator } from "../../redux/dialogsReducer";
 
 
 const DialogItem = (props) => {
@@ -36,11 +35,12 @@ let Dialogs = (props) => {
         (m => <MessageItem key={m.id} message={m.message}/>)
     )
 
-    if(!props.isAuth) return <Redirect to={'/login'} />
+    if (!props.isAuth) return <Redirect to={'/login'}/>
 
-    const onSubmit = (formData) => {
-        console.log(formData)
+    const addNewMessage =(values) => {
+        props.addMessage(values.newMessageBody)
     }
+
 
     return (
         <div className={s.dialogs}>
@@ -49,7 +49,7 @@ let Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <MessageAreaReduxForm  onSubmit={onSubmit}/>
+                <MessageAreaReduxForm onSubmit={addNewMessage}/>
             </div>
         </div>)
 }
@@ -62,20 +62,25 @@ const mstp = (state) => {
     }
 }
 
-export default compose(
-    connect(mstp),
+const mdtp = (dispatch) => {
+    return {
+        addMessage: (newMessageBody) => {
+            dispatch(addMessageActionCreator(newMessageBody))
+        }
+    }
+}
+
+export const DialogsContainer = compose(
+    connect(mstp, mdtp),
     withAuthRedirect)(Dialogs);
 
 
-
 const MessageAreaForm = (props) => {
+
     return (
-        <form onSubmit={props.handleSubmit} >
+        <form onSubmit={props.handleSubmit}>
             <div>
-                <label htmlFor={"message"}>Enter yore message:</label>
-            </div>
-            <div>
-                <Field component={"input"} type={"text"} name={"message"} placeholder={"message"}/>
+                <Field component={"textarea"} type={"text"} name={"newMessageBody"} placeholder={"Enter yore message..."}/>
             </div>
             <div>
                 <button>Send</button>

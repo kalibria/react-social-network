@@ -1,7 +1,8 @@
 import React from "react";
-import MyPosts from "../MyPosts";
+import MyPosts, {MyReduxFormPosts} from "../MyPosts";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/profileReducer";
 import {connect} from "react-redux";
+
 
 // const MyPostsContainer = () => {
 //
@@ -34,7 +35,7 @@ const MapStateToProps = (state) => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText,
-        // isAuth: state.auth.isAuth
+
     }
 }
 
@@ -49,6 +50,7 @@ const MapDispatchToProps = (dispatch) => {
     }
 }
 
-const MyPostsContainer = connect (MapStateToProps, MapDispatchToProps) (MyPosts)
+const MyPostsContainer = connect (MapStateToProps, MapDispatchToProps) (MyReduxFormPosts)
 
 export default MyPostsContainer;
+
