@@ -36,21 +36,19 @@ const MapStateToProps = (state) => {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText,
 
+
     }
 }
 
 const MapDispatchToProps = (dispatch) => {
     return {
-        updateNewPostText: (text) => {
-            dispatch(updateNewPostTextActionCreator(text))
-        },
-        addPost: () => {
-            dispatch(addPostActionCreator())
+            addPost: (newPostText) => {
+            dispatch(addPostActionCreator(newPostText))
         }
     }
 }
 
-const MyPostsContainer = connect (MapStateToProps, MapDispatchToProps) (MyReduxFormPosts)
+const MyPostsContainer = connect (MapStateToProps, MapDispatchToProps) (MyPosts)
 
 export default MyPostsContainer;
 
