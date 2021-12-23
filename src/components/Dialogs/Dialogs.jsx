@@ -7,6 +7,8 @@ import {compose} from "redux";
 import {reduxForm} from "redux-form";
 import {Field} from 'redux-form';
 import {addMessageActionCreator } from "../../redux/dialogsReducer";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {Textarea} from "../../common/FormsControls/FormsControls";
 
 
 const DialogItem = (props) => {
@@ -74,13 +76,18 @@ export const DialogsContainer = compose(
     connect(mstp, mdtp),
     withAuthRedirect)(Dialogs);
 
+const maxLength50 = maxLengthCreator(50);
 
 const MessageAreaForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={"textarea"} type={"text"} name={"newMessageBody"} placeholder={"Enter yore message..."}/>
+                <Field component={Textarea}
+                       validate={[required, ]}
+                       type={"text"}
+                       name={"newMessageBody"}
+                       placeholder={"Enter yore message..."}/>
             </div>
             <div>
                 <button>Send</button>
