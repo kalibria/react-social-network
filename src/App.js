@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import Dialogs, {DialogsContainer} from "./components/Dialogs/Dialogs";
+import {DialogsContainer} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -9,7 +9,7 @@ import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
-import LoginPage from "./components/login";
+import Login from "./components/Login/login";
 
 
 
@@ -34,7 +34,7 @@ const App = (props) => {
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
-                    <Route path='/login' render={() => <LoginPage />} />
+                    <Route path='/login' render={() => <Login />} />
                 </div>
             </div>
         </BrowserRouter>
