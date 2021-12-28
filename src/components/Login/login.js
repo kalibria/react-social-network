@@ -1,20 +1,21 @@
 import React from "react";
 import {reduxForm} from "redux-form";
-import { Field } from 'redux-form';
+import {Field} from 'redux-form';
 import {Input} from "../../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/authReducer";
 import Redirect from "react-router-dom/es/Redirect";
+import style from "../../common/FormsControls/FormsControls.module.css"
+
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log('onsubmitttt')
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if(props.isAuth) {
-        return <Redirect to={"/profile"} />
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
     }
 
     return <div>
@@ -34,11 +35,15 @@ const LoginForm = (props) => {
                 <Field component={Input} validate={[required]} name={"email"} placeholder={"email"}/>
             </div>
             <div>
-                <Field component={Input} validate={[required]} name={"password"} placeholder={"Password"} type={"password"}/>
+                <Field component={Input} validate={[required]} name={"password"} placeholder={"Password"}
+                       type={"password"}/>
             </div>
             <div>
                 <Field component={Input} validate={[required]} name={"rememberMe"} type={"checkbox"}/>remember me
             </div>
+            { props.error && <div className={style.formSummaryError}>
+                {props.error}
+            </div> }
             <div>
                 <button>Login</button>
             </div>
