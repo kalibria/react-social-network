@@ -29,15 +29,13 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
     payload: {userId, email, login, isAuth}
 });
 
-export const getAuthMe = () => {
-    return (dispatch) => {
-        AuthAPI.me().then(data => {
+export const getAuthMe = () => (dispatch) => {
+    return AuthAPI.me().then(data => {
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data
                 dispatch(setAuthUserData(id, email, login, true))
             }
         })
-    }
 }
 
 export const login = (email, password, rememberMe) => (dispatch) => {
