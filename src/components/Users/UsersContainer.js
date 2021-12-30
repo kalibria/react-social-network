@@ -9,7 +9,6 @@ import {
 import {connect} from 'react-redux';
 import Users from './Users';
 import Preloader from "../../common/preloader/Preloader";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
 import {
     getCurrentPage,
