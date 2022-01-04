@@ -2,6 +2,7 @@ import React from "react";
 import styles from './ProfileHeader.module.css';
 import Preloader from "../../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 const ProfileHeader = (props) => {
@@ -29,7 +30,7 @@ const ProfileHeader = (props) => {
                     <p>{props.profile.contacts.github}</p>
                 </div>
             </div>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 }
