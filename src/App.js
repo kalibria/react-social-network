@@ -59,6 +59,5 @@ const mapStatToProps = (state) => ({
 })
 
 export default compose(
-
     connect(mapStatToProps, {initializeApp, getAuthMe}))(App);
 
