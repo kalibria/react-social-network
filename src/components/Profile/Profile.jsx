@@ -4,10 +4,10 @@ import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import MyPostsContainer, {MyReduxFormPost} from "./MyPosts/Post/MyPostsContainer";
 
 
-const Profile = (props) => {
+const Profile = ({profile, status, updateStatus}) => {
 
     return <div className={styles.content}>
-        <ProfileHeader profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileHeader profile={profile} status={status} updateStatus={updateStatus}/>
         <MyPostsContainer />
     </div>
 }

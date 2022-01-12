@@ -10,22 +10,22 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import Login from "./components/Login/login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {getAuthMe, logout} from "./redux/authReducer";
 import {compose} from "redux";
 import Preloader from "./common/preloader/Preloader";
 import {initializeApp} from "./redux/app-reducer";
-
-
+import store from "./redux/redux-store";
 
 
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp();
     }
+
     render() {
-        if(!this.props.initialized){
-            return <Preloader />
+        if (!this.props.initialized) {
+            return <Preloader/>
         }
         return (
             <BrowserRouter>
@@ -55,9 +55,17 @@ class App extends React.Component {
 };
 
 const mapStatToProps = (state) => ({
-  initialized: state.app.initialized
+    initialized: state.app.initialized
 })
 
-export default compose(
+let AppContainer = compose(
     connect(mapStatToProps, {initializeApp, getAuthMe}))(App);
 
+const SamuraiJsApp = (props) => {
+    return <React.StrictMode>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </React.StrictMode>
+}
+export default SamuraiJsApp

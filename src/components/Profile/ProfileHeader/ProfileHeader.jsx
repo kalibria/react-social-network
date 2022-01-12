@@ -5,32 +5,28 @@ import ProfileStatus from "./ProfileStatus"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
-const ProfileHeader = (props) => {
-    if (!props.profile) {
+const ProfileHeader = ({profile,status, updateStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
 
     return (
         <div>
-            {/*<div className={styles.header}>*/}
-            {/*    <img*/}
-            {/*        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoI82dQ4RRe2jJboyhw2sLZofK-Kt8GhMQMg&usqp=CAU'/>*/}
-            {/*</div>*/}
             <div className={styles.userInfo}>
                 <div className={styles.descriptionBlock}>
-                    <img src={props.profile.photos.large}/>
+                    <img src={profile.photos.large}/>
 
                 </div>
-                <p>{props.profile.fullName}</p>
-                <p>{props.profile.aboutMe}</p>
+                <p>{profile.fullName}</p>
+                <p>{profile.aboutMe}</p>
                 <div className={styles.contacts}>
-                    <p>{props.profile.contacts.facebook}</p>
-                    <p>{props.profile.contacts.instagram}</p>
-                    <p>{props.profile.contacts.youtube}</p>
-                    <p>{props.profile.contacts.github}</p>
+                    <p>{profile.contacts.facebook}</p>
+                    <p>{profile.contacts.instagram}</p>
+                    <p>{profile.contacts.youtube}</p>
+                    <p>{profile.contacts.github}</p>
                 </div>
             </div>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
         </div>
     )
 }
